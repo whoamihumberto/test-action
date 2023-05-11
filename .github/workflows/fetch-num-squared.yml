@@ -1,0 +1,21 @@
+name: Test Custom Action Python
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Fetch num squared
+        id: get_square
+        uses: whoamihumberto/github-action-python-template@main
+        with:
+          num: 11
+      - name: Print the square
+        run: echo "${{ steps.get_square.outputs.num_squared }}"
